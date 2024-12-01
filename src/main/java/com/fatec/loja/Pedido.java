@@ -22,7 +22,7 @@ public class Pedido {
     private Cliente cliente;
     private double total = 0;
     
-    @OneToMany(mappedBy = "pedido") //Deve ter alguma cagada aqui que ta zoando o pedidoID no Item temp: , cascade = CascadeType.ALL, orphanRemoval = true
+    @OneToMany(mappedBy = "pedido")
     private List<Item> itens = new ArrayList<>();
     public int getId() {
         return id;

@@ -1,6 +1,5 @@
 package com.fatec.loja;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,7 @@ public class ClienteController {
 
     @PostMapping("/api/cliente")
     public String gravar(@RequestBody Cliente obj){
+        System.out.println("Entrou no gravar!");
         Optional<Cliente> emailTest = bd.findByEmail(obj.email);
         if(emailTest.isPresent()){
             return "Email já cadastrado!";
@@ -34,12 +34,13 @@ public class ClienteController {
 
     @PutMapping("/api/cliente")
     public String alterar(@RequestBody Cliente obj){
+        System.out.println("Entrou no alterar!");
         Optional<Cliente> emailTest = bd.findByEmail(obj.email);
-        if(emailTest.isPresent()){
-            return "Email já cadastrado!";
+        if(!emailTest.isPresent()){
+            return "Registro não encontrado!";
         } else {
             bd.save(obj);
-            return "O cliente "+ obj.getNome() + " foi atualizado com sucesso!";
+            return "O cadastro do cliente "+ obj.getNome() + " foi atualizado com sucesso!";
         }
     }
 
@@ -86,11 +87,6 @@ public class ClienteController {
         } else {
             return "Cliente com email "+email+" não encontrado!";
         }
-    }
-
-    @GetMapping("/api/clientes")
-    public List<Cliente> listar(){
-        return bd.findAll();
     }
 
     @PostMapping ("/api/cliente/login")
