@@ -12,11 +12,13 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @ManyToOne
     @JoinColumn(name = "produtoId")
     private Produto produto = new Produto();
     private int quantidade = 0;
     private double valor = 0;
+
     @ManyToOne
     @JoinColumn(name = "pedidoId") 
     private Pedido pedido;
@@ -44,5 +46,12 @@ public class Item {
     public void setValor(double valor) {
         this.valor = valor;
     }
+    public Pedido getPedido() {
+        return pedido;
+    }
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+    
 
 }

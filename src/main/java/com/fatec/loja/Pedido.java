@@ -1,8 +1,8 @@
 package com.fatec.loja;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,12 +16,14 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @ManyToOne
     @JoinColumn(name = "clienteId")
     private Cliente cliente;
     private double total = 0;
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true) //Deve ter alguma cagada aqui que ta zoando o pedidoID no Item
-    private List<Item> itens;
+    
+    @OneToMany(mappedBy = "pedido") //Deve ter alguma cagada aqui que ta zoando o pedidoID no Item temp: , cascade = CascadeType.ALL, orphanRemoval = true
+    private List<Item> itens = new ArrayList<>();
     public int getId() {
         return id;
     }
