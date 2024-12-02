@@ -22,7 +22,6 @@ public class ClienteController {
 
     @PostMapping("/api/cliente")
     public String gravar(@RequestBody Cliente obj){
-        System.out.println("Entrou no gravar!");
         Optional<Cliente> emailTest = bd.findByEmail(obj.email);
         if(emailTest.isPresent()){
             return "Email já cadastrado!";
@@ -34,7 +33,6 @@ public class ClienteController {
 
     @PutMapping("/api/cliente")
     public String alterar(@RequestBody Cliente obj){
-        System.out.println("Entrou no alterar!");
         Optional<Cliente> emailTest = bd.findByEmail(obj.email);
         if(!emailTest.isPresent()){
             return "Registro não encontrado!";
